@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="fox.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex's Isle</title>
+    <script type="module" crossorigin src="/assets/index-DQqV2FR2.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DiTWidxY.css">
+  </head>
+  <body>
+    <div class="loading" id = "load">
+      <div class="loading-wrapper">
+        <h3>loading</h3>
+        <div class="dot-flashing"></div>
+        <div class="error-wrapper hidden">
+          <h4>Please use laptop/ desktop to access site</h4>
+        </div>
+    </div>      
+    </div>
+    <canvas id="bg"></canvas>
+    <div id="app"></div>
+    <nav class="navbar">
+      <button class="button-toggle">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <p class="cross">x</p>
+      </button>
+
+      <ul class="menu">
+        <li class="menu-item"><a href="./">Home</a></li>
+        <li class="menu-item"><a href="./about">About</a></li>
+        <li class="menu-item"><a href="./contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="popup">
+      <div class="content content-0 qVisible">
+        <h1>Welcome to Alex's Isle!</h1>
+      </div>
+      <div class="instruct qVisible">
+        <div class="text">Use</div>
+          <div>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAT1SURBVHhe7ZxNSGNXGIZPbqpTTUpkEBHjFUQoYqwbF4K01cTfaUsFF4VacGG78KdNcNWVQrtyVWa0PwvtomAFF4UEorHKJFUpdGEX9QdEEMG0IYjaGZ2psRpPFxKcfl8yufcmuQduvgeezXvkXPleiNfk3Jg454wQhwQDQl+oAMFQAYKhAgRDBQiGChAMFSAYKkAwVIBgqADBUAGCoQIEQwUIhgoQDBUgGOEF+Hy+nqqqqkNZlsOBQOABXDc8nHNh+ny+9wsKCv5ljHHGGK+srAzDnzG6KNDLhYWFdwoLCy8Tw08If87ookAPQ6FQa1FR0T9w+FSADq6vr79psViewcFTATq4sbHRaLPZnsCh53MBJq7TqYidnR1Ha2vrL8fHx6Vw7UU45yaYGRldbkN3d3drXS5XMN3w85GcF3BwcFDd2dm5fHR0VAbXiBwXEIlEKjo6OlbC4bAM14hbclZANBotdzqdof39/Rq4RtyRkwJOT0/vd3V1/by3t/c6XCMA8LYoU8/Ozl5ramr6Dd5eKhXuZ3RRkInn5+fW5ubmX+FQ1Qj3NLoo0OrFxcWr7e3tK3CgaoX7Gl0UaDEWi93r7u4OwGFqEe5tdFGg1qurq1d6e3t/goPUKtzf6KJAjfF4XOrv7/8BDjET4TWMLgqUenNzYxoYGPgeDjBT4XWMLgqU6vF4HsLhZUN4HaOLAiWOjY19CQeXr1qt1vP6+vqt0dHRr7a3tx1wVulEQTonJiY+h78EeavZbL4eGRn5+vLyshDOLZUoeJmTk5OfwYuSWJfL9VhpCShI5fT09Ccmk+kGXoxM7vDw8DdwhslEQTJnZ2c/kiQpDi9CptZsNl9vbW3Vw1lCUQCdn5//wGw2X8MLkOn1eDwP4TyhKHjRxcXFB8nO7pDKrKur24EzhaIgYTAYdKY6u0Mq02q1nsO5QlHAOWerq6tvFxcXP4cbkuqFs4Wi4PDwUC4pKfkbbkRqE84XioK+vr4f4SakduF8oehglt1u/ysSiVT8LyQ0k+6gGfpQPh6Pm2FG5A5UQFtb22OYETkEvibRH+HsCucLRQHnnK2trb1Ft6HZEc4WioKE9I9Y5mr+RyxhIBDoprcitJvRWxEJ6c047brd7kdwnlAUJHNubu5DKkGdkiTFNzc334CzhKIglTMzMx/TBzLKHRwc/A7OMJkoeJlTU1OfwguRWKfTGYzFYvfg/JKJgnTSh/KplSQpPjQ09K3S4XMtBXDO2fj4+Bfw4vmqxWJ55nA4tt1u9yMlr/lQFCiVDmZlRxQolY4mZkcUqJEO52YuCtRKx9MzEwVapAc0tIsCrdIjStpEQSbSQ3rqRUGm0mOq6kRBNjw5Obnf0NDwBxyuEuFeRhedisgW0Wi0vKWlZVXt0/LpThEYDfShfLYoLy+PhkIhZ01NzT5cI+7IWQGMMVZRURFZWVnpkGU5DNeIW3JaAGOMVVdXHywvL3eWlZUdwTVChwIYY6y2tnY3GAy6SktLj+FavqNLAYwx5nA4dpaWlrptNttTuJbP6FYAY4w1Njb+7vf737NYLM/hWt4C70v1kL649U4U6CV9dfGtKNBTr9fbQ1/enSTUU6/X2yPL8qHdbv/T7/e/C9eNbs7eiiCUoetdEIGhAgRDBQiGChAMFSAYKkAwVIBgqADBUAGCoQIEQwUIhgoQDBUgGCpAMFSAYP4D9bqvLLBN7ysAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAChElEQVR4nO2cPY9NURSGHyIoaFQiUegkqLQInSGhk4jSlNRqfoDMJD4qhUKpVgidRCsoJCofCZliJD4SgiU3ucXNZDD3nn3OOufu50lWe7Pe953Z95599l4gIiIiIiIiIiIiIiIyf5wG3gFvgLPZzdTIWyDG9cMQuifW1HfgVEIf1RLr1DfgeHZjNQcQwBfgSHZzNQcQwCfgcHaDNQcQwApwILvJmgMI4COwP7vRmgOI8XPCvuxmaw4ggNfAnuyGaw4ggFfA7uymaw4ggGfAruzGaw4ggKfAzuzmaw4ggCfAjmwBNQcQwENge7aImgMI4AGwLVtIzQEEcB/Yki2m5gACuAtszhZUcwAB3AE2ZYuqOYAAlroUcAhYBl6M99DbEBQDrKttGz/61r8F/OqB2OhpXWnT/Mc9EBgDqEttBHC7B8JiIPUbuFh6zXfZYaoQfgLnSwWw3IO/qhhoCOdKBPCyB2JioDU6c3SyaQCfeyAkBlyjM0cnmgSQLSDmoL4CRw2A1BBWgb3+B5Aawj0DIDWADwZAagDvDQCXoFpr1S9hUn+GHvNBjGE+iLkVQaOtiAUastSD9TNq3ow7OP6wbEExoBpt31+gIDd7ICoG9EJmkcJsBR71QFwMoC6XNn8yhBsuR6S8lJ9kdIHtOvDcdwVMmn+tC/PngRj6wayhE4XLo4lTUtJ8D+fOQCnzPZ4+IyXM94JGA5qa7xWlhjQx30t6BZjVfK+pFmIW872oXZBpzXdUQWGmMd9hHS2wUfMdV9MSGzHfgU0t8j/zHVnWMv8y36F9HfA38x1b2RHrme/g1g5Za76ji5OHd5/puoHaWRiH4Ph6ERERERERERERERGhC/4AHoNCxWeKovAAAAAASUVORK5CYII=">
+          </div>
+          <div class="text">or</div>
+          <div>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEFklEQVR4nO2bXU8TQRiFe+Ov0FsT9ff4gUYSY4zRxE8UNciHoChRYbeiFlARsgtayy6SKtqKEhCQQrsjSGVo+xdIFC41GTPEVLdLBUq7b6XnJOems1zMed6Zd4ZtPR4IgiAIgiAIgiAIgiAIWodmEokdjKcCFk8tMZ4SpWSLp5YsnjSseGonWfgWTy5SB8HIQSQX2cLCdtcByMqnnjwrElvzKb/rAEpx22HZPJ/85joA8knz4jIAcAAgr0KGFUAfBMMWRB8GIzB6AAcA8ipkWAH0QTBsQfRhMAKjB3AAIK9ChhVAHwTDFkQfBiMwegAHANeqLTQ+JTrN1zb3D41iBbgFoLb1sdh7psrm4zVNAOBG+NbXhCi/VO8AID0cYegBhQbwauTTquFLPwoEAaDQALxaICuAqhYfABQawNlGJSuAgxW1Yjq+QAKhJI6hEzNxse9cdVYA0uY7mtNQSQDQg+F/hi99t7MXAAoFoOHBU1vYhy7UihPXbts+O1l3GwAKEb41nxRHrtywhX25+aFQuv2OVTAS/YwtKN8ABscijqB9z/pXbsCZn8ubMXpAngHc7zUcQQ+OToro3II4UFFj+7xa7QCAfAOoaPLaQj5ceW3lVizHLjTds/eGi3Ui9nvMLW/pU1Bkdl7szzh+Vilt6fHWVS5nAx/GASBfAJ4NDjkC7ngxkB4f+DDmGFe6/ACQLwCNbd2OgEPj0+nx6NfEyi347/HTDc0AkC8AR6saHQBkwKeut6RdlgFg39mrYsyaRQ/YbPihiek1b7/Z3D3wBgA2C8D3vD9nAHWtjwFgswAq79zPGUB5ZX36qFpob8lj6NQcF2Xn7ZesY9U3sz5f7e1wQJAvcAAgRwD+t8OOQG+0dWV9/klf0PG8fIEDADkCaHqkOQLVg6Gszw9NxhzPyxc4AJAjgGM1txxHy49rHC0zj6zyBc7E5zh6wEbDfx+xHNW8nv/11z/odPxdTzAMABsFMBxhOX35arUvbbnRiLfkKYj9RwYADgDkVciwAuiDYNiC6MNgBEYP4ABAXoUMK4A+CIYtiD4MRmD0AA4A5FXIsALog2DYgujDYARGD+AlBiAad/e7l6yILX8W5TqA8GSMfOKsSBz+FHMfQEffazE9R/ODOFZEnopz0R545T4AVTeF70VQhCdiohS3o2g8sVL5MnyZBQkA2ExnAAB6yQEwlqgnrRaJFd347j4AzZyjnrhaJFZ084vrABTNbKGeuFokVjTzjusAvNrLPYpm/qSevEptzfhxr6dvl4dCqmZ6yQPQyau/xUOl9vb2bYpuhks2fN0IyQzIAPyBYKhyKVIHorplzfghK588/MyeoOpGszwRKJq5vOWqXTOXf8/trtJt7qbOG4IgCIIgCIIgCIIgCPL8d/oFxirw8zHPmQcAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADfElEQVR4nO2aQU8TURSFu/FX6NZE/T3VrcZITMAUl1ibGLAgBtoZNKaWBAOZQUPpjBJAoQqBEFqkdC5oa1/b+QskCktMnpmGoHGidGHfLc45yVlxF7zz3fvuMEMoBEEQBEEQBEEQBEEQBEEtaK9ev0DCnXWEe0DClUGyI9wDRzQsp+JeZAvfEY197iCIHURjn2q188oBeJ3PfXjqEDtVd0Y5gCBeO/QnVxtflQNgP7ToLAOAAAD2LiRMAH8QhCuIPwxiMHaAAAD2LiRMAH8QhCuIPwxiMHaAAAD2LiRMAH8QhCuIPwxiMHaAAIC2dNYLe/GvziytyuXNIiagXR0YjkRb8q3YkEzPzMlStYEriANA+NiRuCbzuxXsAC4A4UhUdvePyo+fqljC7QBwMzp0cv9PWAsyMTkjb9yL++riqUkAaAeAOw+TvppNKsuu2LCvdn4trwxCoAGQcOXrlQ1fbTSZAgBVAEi4zZ/9Wnv1bkwW9tQs5MBPAAlXPjWzPmCv3n4AAFUTkFla9dU/e2kDgCoA82t5X/3IxDQAqALwbmPLVz/4fAoAAKANUvFkQZgAACA8hkZb3gEL6wXfDhgeN7ADVF1B2ffrvnrdmAUAVQDGM3O+eu+lnYpd1Y49e+aWcF8i5atfzqv5WhZ4ACtbJXmt977v1bWj6AtZoAFsl4XsHdR8td4nSlW/Z2AA3H7wuPkXr+fF9YI05pZkd/+Ir65nICGLZQEA/xpAuAVf74vL1W1HWfiBmoDwKe4ZGJVrxV2l4QNAJCq7Yo+aj6GlL3Xl4VPQ/zErV9hhCT0QAOiMGAAEALB3IWEC+IMgXEH8YRCDsQMEALB3IWEC+IMgXEH8YRCDsQMEALB3IWEC+IMgXEH8YRCDsQNEwADsVHjeu1MHulipqQeQ2yqxH5w6xLlCST2A8eyiLJZr7IcnZm9XhEzPLqgHoJu2TGXmZS5fkkG8jnYq9Wbne+F7WbAAgO2TDADADBwA64D70HqHWDOtb+oBGHaZ++B6h1gz7c/KAWiGneQ+uN4h1gx7RDmAMePNFc2wv3MfXue2YR09mc5eCnFIN+wx9gBM9u5PhriUTqfPaaadC2z4prXsZcAG4CcES/dGkTsQXZUN68jrfPbwf98JumklvCcCzbAP/7tuN+zD47ONalP2Ze68IQiCIAiCIAiCIAiCoNCZ0w82rtPC6yqpMAAAAABJRU5ErkJggg==">
+          </div>
+          <div class="text">keys to move.</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-1 hidden">
+        <div class="scene">
+          <div class= "title">
+            <h1>Education</h1>
+          </div> 
+          <div class="text">
+            <h2>I began my programming journey in Ireland, where I studied physics.</h2>
+          </div>
+          <button class="button" href='#education'>View More</button>
+        </div>
+      </div>
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nO3bwU4bMRDGcV94inJFon1V2tpwqcKtsjnQsFalwoE8AK2g2VVFVplN/ApIlB6p5MppFRVxDiPw/yfNffSNPb7sGgMAAAAAAAAAAAAAAAAAAAAAAF6EH4vFdidp3Eq66yRlKm0sg5JxK8um7dPOOvxWljeEnp704K0yH4ZXppx8wk8qt76dp2PD2kl6K3e+vC03gJ0vehkwANE9gAxAGEDWDoEbIPpBsIKkzuINEAaQtUPgBoh+EKwgqbN4A4QBZO0QuAGiHwQrSOos871fqDfRVVpX/ZDN5NtUvZGu0pp8nWZzeHKWr2aDejNdZXXZSx6NT7NxIeYPn77kycU0s47SxoMvGZeTX8Iv2a8GQEW1DBhA0D2AxoXmTrsJV2nZ0Pw0zseZdiOu0rIhXhvr43vtRlylZX3cM/v+8xvr42/tZlxt5Zv7g6OT3dXnic7HffWGQl1VNs/649zRaLRlQ5xoN+UqKRua85L5gy+k/w6hceVqaDfoXmr55r6c/Efh/6+8CS4078oLbX38pd50eN5VMvyX5Vv7Mb7e2D8GAAAAAAAAAAAAAAAAAAAAAADAaPkD0wly+lR/zIEAAAAASUVORK5CYII="></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-2 hidden">
+        <div class="title">
+          <h1>Skills</h1>
+        </div> 
+        <div class="text">
+          <h2>During college, I began working with an energy company which allowed me to develop my coding skills.</h2>
+        </div>
+        <button class="button" href="#skills"> View More</button>
+      </div>
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nO3bwU4bMRDGcV94inJFon1V2tpwqcKtsjnQsFalwoE8AK2g2VVFVplN/ApIlB6p5MppFRVxDiPw/yfNffSNPb7sGgMAAAAAAAAAAAAAAAAAAAAAAF6EH4vFdidp3Eq66yRlKm0sg5JxK8um7dPOOvxWljeEnp704K0yH4ZXppx8wk8qt76dp2PD2kl6K3e+vC03gJ0vehkwANE9gAxAGEDWDoEbIPpBsIKkzuINEAaQtUPgBoh+EKwgqbN4A4QBZO0QuAGiHwQrSOos871fqDfRVVpX/ZDN5NtUvZGu0pp8nWZzeHKWr2aDejNdZXXZSx6NT7NxIeYPn77kycU0s47SxoMvGZeTX8Iv2a8GQEW1DBhA0D2AxoXmTrsJV2nZ0Pw0zseZdiOu0rIhXhvr43vtRlylZX3cM/v+8xvr42/tZlxt5Zv7g6OT3dXnic7HffWGQl1VNs/649zRaLRlQ5xoN+UqKRua85L5gy+k/w6hceVqaDfoXmr55r6c/Efh/6+8CS4078oLbX38pd50eN5VMvyX5Vv7Mb7e2D8GAAAAAAAAAAAAAAAAAAAAAADAaPkD0wly+lR/zIEAAAAASUVORK5CYII="></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-3 hidden">
+        <div class="title">
+          <h1>Experience</h1>
+        </div> 
+        <div class="text">
+          <h2>After finishing college, I moved to Lisbon and began working as a software engineer.</h2>
+        </div>
+        <button class="button" href="#experience"> View More</button>
+      </div>   
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nO3bwU4bMRDGcV94inJFon1V2tpwqcKtsjnQsFalwoE8AK2g2VVFVplN/ApIlB6p5MppFRVxDiPw/yfNffSNPb7sGgMAAAAAAAAAAAAAAAAAAAAAAF6EH4vFdidp3Eq66yRlKm0sg5JxK8um7dPOOvxWljeEnp704K0yH4ZXppx8wk8qt76dp2PD2kl6K3e+vC03gJ0vehkwANE9gAxAGEDWDoEbIPpBsIKkzuINEAaQtUPgBoh+EKwgqbN4A4QBZO0QuAGiHwQrSOos871fqDfRVVpX/ZDN5NtUvZGu0pp8nWZzeHKWr2aDejNdZXXZSx6NT7NxIeYPn77kycU0s47SxoMvGZeTX8Iv2a8GQEW1DBhA0D2AxoXmTrsJV2nZ0Pw0zseZdiOu0rIhXhvr43vtRlylZX3cM/v+8xvr42/tZlxt5Zv7g6OT3dXnic7HffWGQl1VNs/649zRaLRlQ5xoN+UqKRua85L5gy+k/w6hceVqaDfoXmr55r6c/Efh/6+8CS4078oLbX38pd50eN5VMvyX5Vv7Mb7e2D8GAAAAAAAAAAAAAAAAAAAAAADAaPkD0wly+lR/zIEAAAAASUVORK5CYII="></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="instruct hidden">
+        <div class = "text">
+          Connect with me through <a href = "https://www.linkedin.com/in/alexander-mason-serres-4167b82b2/" target="_blank"> Linkedin</a>
+        </div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR4nO3bwU4bMRDGcV94inJFon1V2tpwqcKtsjnQsFalwoE8AK2g2VVFVplN/ApIlB6p5MppFRVxDiPw/yfNffSNPb7sGgMAAAAAAAAAAAAAAAAAAAAAAF6EH4vFdidp3Eq66yRlKm0sg5JxK8um7dPOOvxWljeEnp704K0yH4ZXppx8wk8qt76dp2PD2kl6K3e+vC03gJ0vehkwANE9gAxAGEDWDoEbIPpBsIKkzuINEAaQtUPgBoh+EKwgqbN4A4QBZO0QuAGiHwQrSOos871fqDfRVVpX/ZDN5NtUvZGu0pp8nWZzeHKWr2aDejNdZXXZSx6NT7NxIeYPn77kycU0s47SxoMvGZeTX8Iv2a8GQEW1DBhA0D2AxoXmTrsJV2nZ0Pw0zseZdiOu0rIhXhvr43vtRlylZX3cM/v+8xvr42/tZlxt5Zv7g6OT3dXnic7HffWGQl1VNs/649zRaLRlQ5xoN+UqKRua85L5gy+k/w6hceVqaDfoXmr55r6c/Efh/6+8CS4078oLbX38pd50eN5VMvyX5Vv7Mb7e2D8GAAAAAAAAAAAAAAAAAAAAAADAaPkD0wly+lR/zIEAAAAASUVORK5CYII="></div>
+        <div class = text>to go back.</div>
+      </div>
+    </div>
+    <div class = "info" id = "education" style = "display: none;">
+      <ul class="timeline timeline-1">
+        <button class="button-close"></button>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag"> Google Data Analytics Certificate</span>
+              <span class="time-wrapper"><span class="time">2024</span></span>
+            </div>
+            <div class="desc">
+              This course provided a foundational introduction to data analysis. It covered essential skills such as data cleaning, data analysis, and data visualisation 
+              using a range of tools including <strong>spreadsheets</strong>, <strong>SQL</strong>, <strong>R</strong> and <strong>Tableau</strong>.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Bachelor of Science in Applied Physics</span>
+              <span class="time-wrapper"><span class="time">2020 - 2024</span></span>
+            </div>
+            <div class="desc">
+              This BSc offered a comprensive foundation in physics with an emphasis on experimental work. The course primarily covered areas like <strong>quantum mechanics</strong>, <strong>nanotechnology</strong>, <strong>computational
+               physics</strong>, and <strong>semiconductors</strong>. This was my first introduction to coding, primarily to perform numerical techniques such as <strong>matrix manipulation</strong>, <strong>ODEs</strong>
+              and <strong>Fourier transforms</strong>. My final project involved the use of multiple programming languages (Python, MATLAB, LabVIEW) to perform analysis on <strong>non-synchronous</strong> (renewable) generation within a simulated
+               environment. 
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class = "info" id = "skills" style = "display: none;">
+      <ul class="timeline timeline-2">
+        <button class="button-close"></button>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Frontend Development</span>
+            </div>
+            <div class="desc">
+              I enjoy creating and developing interactive websites using languages like <strong>HTML</strong>, <strong>CSS</strong> & <strong>JavaScript</strong>. 
+              This recent project has familiarised me with the <strong>Three.js</strong> library along with <strong>Blender</strong> software. The process of making 
+              interactive design was challenging but rewarding, pushing me to learn about rendering, lighting and camera positioning.
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Backend Development</span>
+            </div>
+            <div class="desc">
+              I am eager to learn and participate more in backend development. I primarily use <strong>Python</strong> to develop and deliver backend tasks. 
+              My main contributions to projects so far include the implementation of <strong>APIs</strong> for data procurement and analysis.
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Data Analysis & Web Scraping</span>
+            </div>
+            <div class="desc">
+              Automating data collection and analysis was my starting point in programming, so I'm comfortable with it. I usually use either 
+              <strong>BeautifulSoup</strong> or <strong>Selenium</strong> Python libraries to scrape relevant data not accessible via API. In order to analyse or structure data, either 
+              <strong>Pandas</strong> or <strong>NumPy</strong> are used to create quick data insights or databases. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">AI Reinforcement Learning & Optimization</span>
+            </div>
+            <div class="desc">
+              My recent role has given me a first hand experience of AI, showing me its capabilities and limitations. I am competent at fine-tuning AI conversational models 
+              assigning them specific personalities and behaviours. This includes parsing and optimizing <strong>JSON function calls</strong> produced by AI which function 
+              as service agents.  
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Coding Languages</span>
+            </div>
+            <div class="skillbox">
+              <p><strong>Python</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+              <p><strong>JavaScript</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+              <p><strong>HTML</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+                <p><strong>SQL</strong></p>
+                <div class="skill">
+                  <div class="skill_level" style="width: 50%"></div>
+                </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Communication & Collaboration</span>
+            </div>
+            <div class="desc">
+              I am a native <strong>English</strong> speaker with proficiency in <strong>Portuguese</strong>. I've been working <strong>remotely</strong> for over two years, 
+              handling projects both solo and collaboratively. I am comfortable and have experience working and communicating with people from different time zones.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class = "info" id = "experience" style = "display: none;">
+      <ul class="timeline timeline-3">
+        <button class="button-close"></button>
+        <div class="title-wrapper">
+          <div class = "title"><h2>Work Experience</h2></div>
+        </div>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">AI Software Engineer</span>
+              <span class="time-wrapper"><span class="time">2024 - Present</span></span>
+            </div>
+            <div class="desc">
+               This role consists of improving and training various kinds of AI through <strong>RLHF</strong>. As a software engineer, this 
+               usually involves reviewing and improving code written by AI. This has led me to understand 
+               core concepts like prompt engineering, behavioral modeling, fine-tuning AI, and exploring how it can be applied to real-world applications. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Junior Data Analyst</span>
+              <span class="time-wrapper"><span class="time">2023 - 2024</span></span>
+            </div>
+            <div class="desc">
+              This role heavily consisted of developing databases and algorithms for early-stage energy projects. Some major contributions included the development of a <strong>GIS</strong> system 
+              which integrated multiple API connections to keep data up to date. Along with this, I created multiple <strong>algorithms</strong> to automate and facilitate essential operations within 
+              the company. One major contribution included creating a program to identify suitable locations for energy projects based on custom criteria. I continued to work here <strong>remotely</strong> 
+              throughout my final year, developing a program which streamlined the process of data acquisition for <strong>market research</strong>. 
+            </div>
+          </div>
+        </li>
+        <div class="title-wrapper">
+          <div class = "title"><h2>Projects</h2></div>
+        </div>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">DeBúrca Design Backend</span>
+              <span class="time-wrapper"><span class="time">2024-2025</span></span>
+            </div>
+            <div class="desc">
+             Worked with <a href="https://orlaithdeburca.com/" target="_blank">De Búrca Design</a> to help optimize workflows. This was completed through the 
+             integration of <strong>API</strong>s into the business's website, allowing for seamless label creation and automatic registration 
+             of new orders to the postage company. Additionally, I developed <strong>Python</strong> tools to simplify inventory management and order processing, improving overall efficiency. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">BSc Final Year Project</span>
+              <span class="time-wrapper"><span class="time">2024</span></span>
+            </div>
+            <div class="desc">
+              My research project was on <strong>non-synchronous</strong> energy generation within Ireland, using a physical model in a simulated environment. The objectives of this 
+              project involved a combination of disciplines, from the wiring arrangements for the physical induction motor to wind interaction modelling. 
+              The testing was primarily enabled by the use of a <strong>DAQ</strong> along with <strong>LabVIEW</strong>, allowing the digital signals to be converted into 
+              analog electric currents.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div> 
+    <div class="progress">
+      <div class="progress-box">
+          <div id="progress" class="progress_level" class="icon"></div>
+          <div id="icon" class="icon"></div>
+          <div class = "icon" style = "left:15.51%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:44.16%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:61.34%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:96%;">
+            <div class="pin">&#33;</div>
+          </div>
+      </div>
+    </div>   
+  </body>
+</html>
