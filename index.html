@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="fox.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex's Isle</title>
+  </head>
+  <body>
+    <div class="loading" id = "load">
+      <div class="loading-wrapper">
+        <h3>loading</h3>
+        <div class="dot-flashing"></div>
+        <div class="error-wrapper hidden">
+          <h4>Please use laptop/ desktop to access site</h4>
+        </div>
+    </div>      
+    </div>
+    <canvas id="bg"></canvas>
+    <div id="app"></div>
+    <nav class="navbar">
+      <button class="button-toggle">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <p class="cross">x</p>
+      </button>
+
+      <ul class="menu">
+        <li class="menu-item"><a href="./">Home</a></li>
+        <li class="menu-item"><a href="./about">About</a></li>
+        <li class="menu-item"><a href="./contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="popup">
+      <div class="content content-0 qVisible">
+        <h1>Welcome to Alex's Isle!</h1>
+      </div>
+      <div class="instruct qVisible">
+        <div class="text">Use</div>
+          <div>
+            <img src="src/backarrows.png">
+            <img src="src/frontarrows.png">
+          </div>
+          <div class="text">or</div>
+          <div>
+            <img src="src/keyA.png">
+            <img src="src/keyD.png">
+          </div>
+          <div class="text">keys to move.</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-1 hidden">
+        <div class="scene">
+          <div class= "title">
+            <h1>Education</h1>
+          </div> 
+          <div class="text">
+            <h2>I began my programming journey in Ireland, where I studied physics.</h2>
+          </div>
+          <button class="button" href='#education'>View More</button>
+        </div>
+      </div>
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="src/spacebar.png"></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-2 hidden">
+        <div class="title">
+          <h1>Skills</h1>
+        </div> 
+        <div class="text">
+          <h2>During college, I began working with an energy company which allowed me to develop my coding skills.</h2>
+        </div>
+        <button class="button" href="#skills"> View More</button>
+      </div>
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="src/spacebar.png"></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="content content-3 hidden">
+        <div class="title">
+          <h1>Experience</h1>
+        </div> 
+        <div class="text">
+          <h2>After finishing college, I moved to Lisbon and began working as a software engineer.</h2>
+        </div>
+        <button class="button" href="#experience"> View More</button>
+      </div>   
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="src/spacebar.png"></div>
+        <div class = text>to interact</div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="instruct hidden">
+        <div class = "text">
+          Connect with me through <a href = "https://www.linkedin.com/in/alexander-mason-serres-4167b82b2/" target="_blank"> Linkedin</a>
+        </div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="instruct hidden">
+        <div class = text>Click</div>
+        <div><img src="src/spacebar.png"></div>
+        <div class = text>to go back.</div>
+      </div>
+    </div>
+    <div class = "info" id = "education" style = "display: none;">
+      <ul class="timeline timeline-1">
+        <button class="button-close"></button>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag"> Google Data Analytics Certificate</span>
+              <span class="time-wrapper"><span class="time">2024</span></span>
+            </div>
+            <div class="desc">
+              This course provided a foundational introduction to data analysis. It covered essential skills such as data cleaning, data analysis, and data visualisation 
+              using a range of tools including <strong>spreadsheets</strong>, <strong>SQL</strong>, <strong>R</strong> and <strong>Tableau</strong>.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Bachelor of Science in Applied Physics</span>
+              <span class="time-wrapper"><span class="time">2020 - 2024</span></span>
+            </div>
+            <div class="desc">
+              This BSc offered a comprensive foundation in physics with an emphasis on experimental work. The course primarily covered areas like <strong>quantum mechanics</strong>, <strong>nanotechnology</strong>, <strong>computational
+               physics</strong>, and <strong>semiconductors</strong>. This was my first introduction to coding, primarily to perform numerical techniques such as <strong>matrix manipulation</strong>, <strong>ODEs</strong>
+              and <strong>Fourier transforms</strong>. My final project involved the use of multiple programming languages (Python, MATLAB, LabVIEW) to perform analysis on <strong>non-synchronous</strong> (renewable) generation within a simulated
+               environment. 
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class = "info" id = "skills" style = "display: none;">
+      <ul class="timeline timeline-2">
+        <button class="button-close"></button>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Frontend Development</span>
+            </div>
+            <div class="desc">
+              I enjoy creating and developing interactive websites using languages like <strong>HTML</strong>, <strong>CSS</strong> & <strong>JavaScript</strong>. 
+              This recent project has familiarised me with the <strong>Three.js</strong> library along with <strong>Blender</strong> software. The process of making 
+              interactive design was challenging but rewarding, pushing me to learn about rendering, lighting and camera positioning.
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Backend Development</span>
+            </div>
+            <div class="desc">
+              I am eager to learn and participate more in backend development. I primarily use <strong>Python</strong> to develop and deliver backend tasks. 
+              My main contributions to projects so far include the implementation of <strong>APIs</strong> for data procurement and analysis.
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Data Analysis & Web Scraping</span>
+            </div>
+            <div class="desc">
+              Automating data collection and analysis was my starting point in programming, so I'm comfortable with it. I usually use either 
+              <strong>BeautifulSoup</strong> or <strong>Selenium</strong> Python libraries to scrape relevant data not accessible via API. In order to analyse or structure data, either 
+              <strong>Pandas</strong> or <strong>NumPy</strong> are used to create quick data insights or databases. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">AI Reinforcement Learning & Optimization</span>
+            </div>
+            <div class="desc">
+              My recent role has given me a first hand experience of AI, showing me its capabilities and limitations. I am competent at fine-tuning AI conversational models 
+              assigning them specific personalities and behaviours. This includes parsing and optimizing <strong>JSON function calls</strong> produced by AI which function 
+              as service agents.  
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Coding Languages</span>
+            </div>
+            <div class="skillbox">
+              <p><strong>Python</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+              <p><strong>JavaScript</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+              <p><strong>HTML</strong></p>
+              <div class="skill">
+                  <div class="skill_level" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skillbox">
+                <p><strong>SQL</strong></p>
+                <div class="skill">
+                  <div class="skill_level" style="width: 50%"></div>
+                </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Communication & Collaboration</span>
+            </div>
+            <div class="desc">
+              I am a native <strong>English</strong> speaker with proficiency in <strong>Portuguese</strong>. I've been working <strong>remotely</strong> for over two years, 
+              handling projects both solo and collaboratively. I am comfortable and have experience working and communicating with people from different time zones.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class = "info" id = "experience" style = "display: none;">
+      <ul class="timeline timeline-3">
+        <button class="button-close"></button>
+        <div class="title-wrapper">
+          <div class = "title"><h2>Work Experience</h2></div>
+        </div>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">AI Software Engineer</span>
+              <span class="time-wrapper"><span class="time">2024 - Present</span></span>
+            </div>
+            <div class="desc">
+               This role consists of improving and training various kinds of AI through <strong>RLHF</strong>. As a software engineer, this 
+               usually involves reviewing and improving code written by AI. This has led me to understand 
+               core concepts like prompt engineering, behavioral modeling, fine-tuning AI, and exploring how it can be applied to real-world applications. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">Junior Data Analyst</span>
+              <span class="time-wrapper"><span class="time">2023 - 2024</span></span>
+            </div>
+            <div class="desc">
+              This role heavily consisted of developing databases and algorithms for early-stage energy projects. Some major contributions included the development of a <strong>GIS</strong> system 
+              which integrated multiple API connections to keep data up to date. Along with this, I created multiple <strong>algorithms</strong> to automate and facilitate essential operations within 
+              the company. One major contribution included creating a program to identify suitable locations for energy projects based on custom criteria. I continued to work here <strong>remotely</strong> 
+              throughout my final year, developing a program which streamlined the process of data acquisition for <strong>market research</strong>. 
+            </div>
+          </div>
+        </li>
+        <div class="title-wrapper">
+          <div class = "title"><h2>Projects</h2></div>
+        </div>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">DeBúrca Design Backend</span>
+              <span class="time-wrapper"><span class="time">2024-2025</span></span>
+            </div>
+            <div class="desc">
+             Worked with <a href="https://orlaithdeburca.com/" target="_blank">De Búrca Design</a> to help optimize workflows. This was completed through the 
+             integration of <strong>API</strong>s into the business's website, allowing for seamless label creation and automatic registration 
+             of new orders to the postage company. Additionally, I developed <strong>Python</strong> tools to simplify inventory management and order processing, improving overall efficiency. 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="flag-wrapper">
+              <span class="flag">BSc Final Year Project</span>
+              <span class="time-wrapper"><span class="time">2024</span></span>
+            </div>
+            <div class="desc">
+              My research project was on <strong>non-synchronous</strong> energy generation within Ireland, using a physical model in a simulated environment. The objectives of this 
+              project involved a combination of disciplines, from the wiring arrangements for the physical induction motor to wind interaction modelling. 
+              The testing was primarily enabled by the use of a <strong>DAQ</strong> along with <strong>LabVIEW</strong>, allowing the digital signals to be converted into 
+              analog electric currents.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div> 
+    <div class="progress">
+      <div class="progress-box">
+          <div id="progress" class="progress_level" class="icon"></div>
+          <div id="icon" class="icon"></div>
+          <div class = "icon" style = "left:15.51%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:44.16%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:61.34%;">
+            <div class="pin">&#33;</div>
+          </div>
+          <div class = "icon" style = "left:96%;">
+            <div class="pin">&#33;</div>
+          </div>
+      </div>
+    </div>   
+    <script type="module" src="src/main.js"></script>
+    <script type="module" src="src/buttons.js"></script>
+  </body>
+</html>
