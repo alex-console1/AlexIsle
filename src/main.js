@@ -64,7 +64,7 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
 
-const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 1000 );
+const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
 //const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.y = 0;
 camera.position.x = 0;
@@ -73,6 +73,11 @@ camera.position.z = 100;
 renderer.setPixelRatio( window.devicePixelRatio),
 renderer.setSize( window.innerWidth, window.innerHeight)
 
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
 
 let charControls;
 let tram;
@@ -82,6 +87,7 @@ let circleAngle = 0.002;
 let elipseAngle = 0.002;
 const majorAxis = 80;
 const minorAxis = 12;
+const clock = new THREE.Clock();
 
 let finish = true
 let transition = true
@@ -99,7 +105,8 @@ function animate() {
     const sceneFour = models.sceneFour;
     const mixer = models.mixer;
     const progress = document.getElementById("progress")
-    const icon = document.getElementById("icon") 
+    const icon = document.getElementById("icon")
+    const delta = clock.getDelta(); 
   
     let sceneList = [sceneOne, sceneTwo, sceneThree, sceneFour];
 
@@ -124,7 +131,7 @@ function animate() {
 
       if (transition) {
         charControls.updateKey(character.position.x);
-        character.position.x += speed*0.04;
+        character.position.x += speed*5*delta;
 
         lightTarget.target = camera;
       }

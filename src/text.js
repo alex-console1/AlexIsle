@@ -6,14 +6,15 @@ var tran = false;
 export function contents(scene, action, finish) {
     for (let i = 0; i < content.length; i++) {
         if (action) {
-            for (let i = 0; i < modals.length; i++) {
-                if (modals[i].style.display !== "none") {
-                    content[i+1].classList.remove("sVisible");
-                    content[i+1].classList.remove("qVisible"); 
-                    content[i+1].classList.add("hidden");
-                    tran = true
+            for (let j = 0; j < modals.length; j++) {
+                if (modals[j].style.display !== "none") {
+                    content[j+1].classList.remove("sVisible");
+                    content[j+1].classList.remove("qVisible"); 
+                    content[j+1].classList.add("hidden");
+                    tran = true;
+                    return;
                 }
-            }   
+            }
 
             if (scene != 0 && scene === i) {
                 if (!tran) {
@@ -22,7 +23,6 @@ export function contents(scene, action, finish) {
                 } else {
                     content[i].classList.remove("hidden");
                     content[i].classList.add("qVisible");
-                    tran = false
                 }
             } 
 
@@ -36,6 +36,7 @@ export function contents(scene, action, finish) {
             content[i].classList.remove("sVisible");
             content[i].classList.remove("qVisible"); 
             content[i].classList.add("hidden");
+            tran = false;
         }
     }      
 };   
