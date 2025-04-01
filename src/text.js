@@ -3,6 +3,7 @@ const instruct = document.getElementsByClassName("instruct");
 var modals = document.querySelectorAll('.info');
 var tran = false;
 
+// Functions defining when content can be visible
 export function contents(scene, action, finish) {
     for (let i = 0; i < content.length; i++) {
         if (action) {
@@ -12,11 +13,13 @@ export function contents(scene, action, finish) {
                     content[j+1].classList.remove("qVisible"); 
                     content[j+1].classList.add("hidden");
                     tran = true;
+                    // Function is returned if any modal is open
                     return;
                 }
             }
 
             if (scene != 0 && scene === i) {
+                // makes content visible at different speeds based on if modal was recently opened or not
                 if (!tran) {
                     content[i].classList.remove("hidden");
                     content[i].classList.add("sVisible");
@@ -41,6 +44,7 @@ export function contents(scene, action, finish) {
     }      
 };   
 
+// Functions defining when instructions can be visible
 export function instructions(scene, action, finish) {
     for (let i = 0; i < instruct.length; i++) {
         if (!action && finish && scene == i) {

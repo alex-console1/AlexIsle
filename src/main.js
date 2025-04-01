@@ -24,7 +24,9 @@ const deviceError = document.querySelector(".error-wrapper")
 
 const models = new Models(scene);
 
-var curScene = 0
+
+//Determining current scene based on fox's x position
+let curScene = 0
 
 function updatePos(position) {
   if (position < -40 && position > -45) {
@@ -49,9 +51,11 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// IIFE to load 3D models before removing loading screen
 (async () => {
   await models.loadPrimaryModels(); 
   await sleep(2000);
+  // Determine if device is desktop/ laptop
   if (window.innerWidth < 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     deviceError.classList.remove("hidden")
   }
@@ -60,18 +64,16 @@ function sleep(ms) {
   }
 })();
 
+// Initialise renderer and attach to canvas
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
 
-const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
-//const controls = new OrbitControls(camera, renderer.domElement);
-camera.position.y = 0;
-camera.position.x = 0;
-camera.position.z = 100;
-
 renderer.setPixelRatio( window.devicePixelRatio),
 renderer.setSize( window.innerWidth, window.innerHeight)
+
+const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
+camera.position.set(0,0,0);
 
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -81,14 +83,12 @@ window.addEventListener('resize', () => {
 
 let charControls;
 let tram;
-
 const radius = 10.5
 let circleAngle = 0.002;
 let elipseAngle = 0.002;
 const majorAxis = 80;
 const minorAxis = 12;
 const clock = new THREE.Clock();
-
 let finish = true
 let transition = true
 
@@ -116,6 +116,7 @@ function animate() {
       charControls = setupControls(character, mixer);
     }
 
+    // Loading imported functions and variables
     if (charControls) {
       const curScene = updatePos(character.position.x);
       charControls.updateScene(curScene)
@@ -126,16 +127,19 @@ function animate() {
 
       const value = (character.position.x + 43.1) / .899;
 
+      // Update progress bar 
       progress.style.width = value + "%";
       icon.style.left = value-0.34 + "%";
 
       if (transition) {
+        // Determine direction and speed of fox based on fox's x position
         charControls.updateKey(character.position.x);
         character.position.x += speed*5*delta;
 
         lightTarget.target = camera;
       }
 
+      // Load exclamation model based on character position
       if (exclam) {
         if (curScene == 1 || curScene == 2 || curScene == 3 || curScene == 5) {
           exclam.visible = true;
@@ -143,7 +147,8 @@ function animate() {
           exclam.visible = false;
         }
       }
-  
+      
+      // Follow fox with camera if spacebar is not pressed
       if (!action && transition == true) {
         camera.position.set(character.position.x, character.position.y + 3, character.position.z + 6)
         camera.lookAt(character.position)
@@ -151,19 +156,23 @@ function animate() {
 
       else if (!action && finish) {
         finish = false
+        // Camera transition to fox after scene
         camAnimate().toModel(camera, character).then(() => {finish = true, transition = true})
       }
 
+      // 
       else if (action && finish) {
         if (curScene === 1 || curScene === 2 || curScene === 3) {
           finish = false
           transition = false
+          // Camera transition to scene from fox
           camAnimate().toScene(camera, sceneList[curScene-1].position, scenePos[curScene-1][0], scenePos[curScene-1][1], scenePos[curScene-1][2]).then(() => {finish = true})
         }
 
         else if (curScene === 5) {
           finish = false
           transition = false
+          // Camera transition to beginning of island
           camAnimate().matchCut(camera, ground, character).then(() => {finish = true; transition = true;})
         }
       };
@@ -172,6 +181,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     circleAngle += 0.002
+    // if tram model is loaded, rotate about a circle
     if (tram) {
       tram.position.x = 26.3 + radius * Math.cos(circleAngle);
       tram.position.z = -4.4 + radius * Math.sin(circleAngle);
@@ -179,6 +189,7 @@ function animate() {
     }
 
     elipseAngle += 0.0016
+    // if bird model is loaded, rotate about an elipse
     if (bird) {
       bird.position.x = majorAxis * Math.cos(elipseAngle);
       bird.position.z = -3.5 + minorAxis * Math.sin(elipseAngle);      

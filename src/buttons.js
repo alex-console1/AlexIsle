@@ -8,6 +8,7 @@ var cancel = document.querySelector('.close');
 var menu = document.querySelector('.menu');
 
 if (modals.length != 0) {
+    // Open modal if button clicked
     for (let i = 0; i < btn.length; i++) {
         btn[i].addEventListener('click', function(e) {
             e.preventDefault();
@@ -18,7 +19,8 @@ if (modals.length != 0) {
             }
         });
     }
-    
+
+    // Close modal if close button is clicked
     for (let i = 0; i < close.length; i++) {
         close[i].onclick = function() {
             modals[i].style.display = "none";
@@ -26,6 +28,7 @@ if (modals.length != 0) {
     }
 }
 
+// Enable menu button to open menu list 
 btnToggle.addEventListener('click', function(event) {
         this.blur();
         menu.classList.toggle('active');

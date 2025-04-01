@@ -2,8 +2,9 @@
 var modals = document.querySelectorAll('info');
 var close = document.getElementsByClassName("info");
 
-
+// Function which defines input keys and fox movement based on position
 export function setupControls(character, mixer){ 
+    // Ensure object animations are initialized
     if (mixer._actions === 0) {
         console.error("Mixer or its actions are not initialized yet.");
         return;  
@@ -19,23 +20,24 @@ export function setupControls(character, mixer){
     function updateScene(curScene) {
         scene = curScene;
         if (scene === 0){
-            interact = false
+            // Re-assigns interact variable after end transition
+            interact = false;
         }
     }
         
     window.addEventListener( 'keydown', function ( e ) {
-
+        // Check if any modals are currently open
         for (var i = 0; i<close.length; i++) {
             if (close[i].style.display == "block") {
-                modal = true
-                break
+                modal = true;
+                break;
             } else {
-                modal = false
+                modal = false;
             }
-        };
+        }
 
+        // Defining inputs based on fox position, camera position and if modals are open
         if (!interact) {
-            
             if (scene == 1 || scene == 2 || scene == 3 || scene == 5) {
                 switch ( e.code ) {
                     case 'KeyD': 
@@ -46,9 +48,7 @@ export function setupControls(character, mixer){
                         bkd = true; break;
                     case 'Space': interact = !interact; break; 
                 }
-            }
-                
-            else {
+            } else {
                 switch ( e.code ) {
                     case 'KeyD': 
                     case 'ArrowRight':
@@ -62,7 +62,6 @@ export function setupControls(character, mixer){
         } else if (modal == true) {
             switch ( e.code ) {
             }
-
         } else {
             switch ( e.code ) {
                 case 'Space': interact = false; break;
@@ -86,8 +85,8 @@ export function setupControls(character, mixer){
         }
     });
 
+    // Adding bounds to fox's x position
     function updateKey(position){
-
         if (position <=  min) {
             if ( fwd ) {
                 dwn=true; 
@@ -96,7 +95,6 @@ export function setupControls(character, mixer){
                 movKey=true
             } if ( bkd ) {
                 dwn=true; 
-                //character.rotation.y = Math.PI;
                 p=0; 
                 movKey=false;
             }       
@@ -108,7 +106,6 @@ export function setupControls(character, mixer){
                 movKey=false;
             } if ( bkd ) {
                 dwn=true; 
-                //character.rotation.y = Math.PI;
                 p=-1; 
                 movKey=true;
             }    
@@ -117,10 +114,9 @@ export function setupControls(character, mixer){
                         dwn=true; 
                         character.rotation.y = Math.PI/2; 
                         p=1;
-                        movKey=true
+                        movKey=true;
             } if ( bkd ) {
                         dwn=true; 
-                        //character.rotation.y = Math.PI;
                         p=-1; 
                         movKey=true;
             }      

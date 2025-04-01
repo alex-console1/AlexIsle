@@ -9,11 +9,12 @@ class Models {
         this.loader = new GLTFLoader();
     }
 
+    // Loading base models and animations
     loadLandscape() {
         return new Promise((resolve, reject) => {
             this.loader.load( 'landscape.glb', function ( gltf ) {
                 let model = gltf.scene;
-                this.ground = model
+                this.ground = model;
                 model.rotation.set(0, -Math.PI / 2, 0);
                 model.position.set(0, -0.2, 0);
            
@@ -32,9 +33,7 @@ class Models {
             this.loader.load( 'tram.glb', function ( gltf ) {
                 let tram = gltf.scene;
                 tram.position.set(26.55, 0.5, -5);
-                this.tram = tram
-                //gltf.scene.scale.set(0.7, 0.7, 0.7);
-                //gltf.scene.rotation.set(0, -Math.PI/2, 0);
+                this.tram = tram;
                 this.scene.add( tram );
 
                 resolve(tram);
@@ -56,12 +55,10 @@ class Models {
                     this.scene.add( character );
                 
                 const mixer = new THREE.AnimationMixer(character); 
-                //const action = mixer.clipAction(gltf.animations[0]); 
                 mixer.clipAction(THREE.AnimationUtils.subclip( gltf.animations[ 0 ], 'idle')).play();
                 mixer.clipAction(THREE.AnimationUtils.subclip( gltf.animations[ 2 ], 'walk')).play();
                 mixer._actions[0].enabled = true;
                 mixer._actions[1].enabled = false;
-                //action.play();
                 
                 this.character = character;
                 this.mixer = mixer;
@@ -139,8 +136,6 @@ class Models {
         return new Promise((resolve, reject) => {
             this.loader.load( 'seagull.glb', function ( gltf ) {
             gltf.scene.position.set(0, 10, 0);
-            //gltf.scene.set(0, 0.51*Math.PI, 0);
-            //gltf.scene.scale.set(0.5, 0.5, 0.5);
                 this.scene.add( gltf.scene );
                 this.bird = gltf.scene
 
@@ -180,16 +175,17 @@ class Models {
 
     loadAncillary() {
         return new Promise((resolve, reject) => {
+            // Creating sea model
             const seaGeometry = new THREE.CircleGeometry( 200 ); 
             
             const seaMaterial = new THREE.MeshPhysicalMaterial( { 
-            color: 0x45b1e8, 
-            reflectivity: 0, 
-            transparent: true,
-            opacity: 0.9,
-            dispersion: 1,
-            roughness: 0.8,
-            fog: false
+                color: 0x45b1e8, 
+                reflectivity: 0, 
+                transparent: true,
+                opacity: 0.9,
+                dispersion: 1,
+                roughness: 0.8,
+                fog: false
             } ); 
             
             const sea = new THREE.Mesh( seaGeometry, seaMaterial ); 
@@ -197,12 +193,14 @@ class Models {
             sea.position.set(0, -0.5, 0)
             this.scene.add( sea );
             
+            // Creating ambient lighting 
             const skyColor = 0x8ef1ff;  
             const groundColor = 0xFFFFFF; 
             var intensity = 2;
             const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
             this.scene.add(light);
-            
+
+            // Creating sun model and glow
             const sunGeometry = new THREE.SphereGeometry( 10 );
             const sunMaterial = new THREE.MeshStandardMaterial( {color: 0xF7CD5D, emissive :0xFCE570, emissiveIntensity: 1.2, roughness:0.1, fog: false} );
             const sun = new THREE.Mesh( sunGeometry, sunMaterial );
@@ -210,14 +208,14 @@ class Models {
             this.scene.add( sun );
             
             const sunGlowMaterial = new THREE.MeshStandardMaterial({
-            color: 0xFDAE83,
-            transparent: true,
-            opacity: 0.2,
-            side: THREE.BackSide,
-            emissive: 0xFCE570,
-            emissiveIntensity: 2,
-            roughness: 0.1,
-            fog: false
+                color: 0xFDAE83,
+                transparent: true,
+                opacity: 0.2,
+                side: THREE.BackSide,
+                emissive: 0xFCE570,
+                emissiveIntensity: 2,
+                roughness: 0.1,
+                fog: false
             });
             
             const sunGlowGeometry = new THREE.SphereGeometry(15, 32, 32); 
@@ -226,7 +224,7 @@ class Models {
             
             sun.add(sunGlow);
             
-            
+            // Creating directional light from sun's position
             const color = 0xF7CD5D;
             var intensity = 8;
             const sunLight = new THREE.DirectionalLight(color, intensity);
@@ -236,9 +234,10 @@ class Models {
             sunLight.castShadow = true;
             
             this.scene.add(sunLight);
-            this.sunTarget = sunLight
+            // Light targeting fox's position
+            this.sunTarget = sunLight;
             this.scene.add(sunLight.target);
-            
+
             this.scene.fog = new THREE.Fog(0xcccccc, 25 , 90);
 
             resolve();
@@ -248,6 +247,7 @@ class Models {
         });
     }
     
+    // Loading main models before attaching exclamation model to fox
     async loadPrimaryModels() {
         await Promise.all([
         this.loadLandscape(),

@@ -1,5 +1,5 @@
 import gsap from 'gsap'
-
+// Functions using GSAP tool for camera transitions between fox and scenes
 export function camAnimate() {
   function toScene(camera, target, x, y, z) {
     return new Promise((resolve) => {
